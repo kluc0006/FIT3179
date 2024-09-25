@@ -13,7 +13,7 @@
         },
         {
             "data": {
-                "url": "../data/fire_archive_M6_101673.csv"
+                "url": "data/fire_archive_M6_101673.csv"
             },
             "mark": {"type": "circle"},
             "encoding": {
