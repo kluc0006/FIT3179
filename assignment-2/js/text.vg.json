@@ -1,0 +1,35 @@
+{
+    "data": {
+      "values": [
+        {"year": "2015", "value": 100},
+        {"year": "2016", "value": 120},
+        {"year": "2017", "value": 150},
+        {"year": "2018", "value": 170},
+        {"year": "2019", "value": 160},
+        {"year": "2020", "value": 180}
+      ]
+    },
+    "layer": [
+      {
+        "mark": "line",
+        "encoding": {
+          "x": {"field": "year", "type": "temporal"},
+          "y": {"field": "value", "type": "quantitative"}
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 5
+        },
+        "encoding": {
+          "text": {"field": "test"}
+        },
+        "transform": [
+          {"filter": "datum.year == 2019"}
+        ]
+      }
+    ]
+  }
