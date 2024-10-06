@@ -89,7 +89,8 @@
     "encoding": {
         "x": {
             "field": "state", 
-            "type": "nominal"
+            "type": "nominal",
+            "title": "State/Territory"
         },
         "y": {
             "aggregate": "count",
