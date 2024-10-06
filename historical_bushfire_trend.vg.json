@@ -98,7 +98,7 @@
             "title": "Fire Count"
         },
         "tooltip": [
-            {"field": "state", "type": "nominal"},
+            {"field": "state", "type": "nominal", "title": "State/Territory"},
             {"aggregate": "count", "type": "quantitative", "title": "Total Fires", "format": ","}]
     }
 }]
