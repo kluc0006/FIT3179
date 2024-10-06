@@ -32,6 +32,7 @@
             "field": "year",
             "type": "quantitative",
             "title": "Year",
+            "axis": {"format": ""},
             "scale": {
                 "domain": {
                     "param": "Year_Above"
@@ -52,7 +53,7 @@
         },
         "tooltip": [
             {"field": "year", "type": "quantitative", "title": "Year"},
-            {"aggregate": "count", "type": "quantitative", "title": "Fire Count"}
+            {"aggregate": "count", "type": "quantitative", "title": "Fire Count", "format": ","}
         ]
     }
     },
@@ -71,7 +72,7 @@
         "encoding": {
             "x": {"field": "year", "type": "quantitative"},
             "y": {"aggregate": "count", "type": "quantitative"},
-            "text": {"value":"Peak Yearly Fire Count of 3350"}
+            "text": {"value":"Peak Yearly Fire Count of 3,350"}
             
         }
         
@@ -97,7 +98,7 @@
         },
         "tooltip": [
             {"field": "state", "type": "nominal"},
-            {"aggregate": "count", "type": "quantitative", "title": "Total Fires"}]
+            {"aggregate": "count", "type": "quantitative", "title": "Total Fires", "format": ","}]
     }
 }]
 }
