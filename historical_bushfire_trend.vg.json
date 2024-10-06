@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-        "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/data/Historical_Bushfire_Boundaries_Mod.csv"
+        "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/Historical_Bushfire_Boundaries_Mod.csv"
     },
     "params": [
         {
