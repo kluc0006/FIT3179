@@ -1,0 +1,72 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "fire_archive_M6_101673.csv"},
+    "width": 700,
+    "height": 450,
+    "title": {"text": "Location of Bushfires in Australia (2019)",
+            "fontSize": 18
+},
+    "params": [
+        {
+            "name": "center_to",
+            "value": [133, 23.45],
+            "bind": {
+                "input": "select",
+                "options": [
+                    [133, 23.45],
+                    [144.96, 37.81],
+                    [151.21,33.87],
+                    [153.03, 27.47],
+                    [147.33, 42.89],
+                    [138.35, 34.55],
+                    [115.86, 31.95],
+                    [130.84, -12.46],
+                    [149.13, 35.28]],
+                    "labels": ["Australia", "Victoria", "New South Wales", "Brisbane", 
+                    "Tasmania", "South Australia", "Western Austrlia", "Northern Terrioty",
+                    "A.C.T"],
+                "name": "Map Centre: "
+            }
+        }
+    ],
+    "projection": {
+        "type": "mercator",
+        "center": {"expr": "center_to"}}, 
+    "layer": [
+        {
+            "data": {
+                "url": "STE_2021_AUST_GDA2020.json",
+                "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
+            },
+            "mark": {"type": "geoshape", "fill": "", "stroke": "gray"}
+        },
+        {
+            "data": {
+                "url": "fire_archive_M6_101673.csv"
+            },
+            "projection": {"type": "mercator",
+                            "center": {"expr": "center_to"}
+        },
+            "mark": {"type": "circle"},
+            
+            "encoding": {
+                "longitude": {"field": "longitude", "type": "quantitative"},
+                "latitude": {"field": "latitude", "type": "quantitative"},
+                "color": {
+                    "field": "brightness",
+                    "type": "quantitative",
+                    "title": "Temperature (Kelvin)",
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [300, 340, 380, 420],
+                        "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7d0405"]
+                    }
+                },
+                "tooltip": [
+                    {"field": "acq_date", "type": "nominal", "title": "Date"},
+                    {"field": "brightness", "type": "quantitative", "title": "Temperature (K)"}
+                ]
+            }
+        }
+    ]
+}

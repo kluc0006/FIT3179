@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA=Compatible" content="IE=edge">
+    <meta name="viewport" conent="device-width, initial-scale=1.0">
+
+    <!-- Vega lite imports-->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!-- Load vegalite visualisations -->
+    <script src="vega_lite_vis.js"></script>
+
+    <!-- CSS stylings -->
+     <link rel="stylesheet" href="styles.css">
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Data Visualisation 2</title>
+</head>
+<div class="page">
+    <!-- pure grid group: Title -->
+    <div class = "pure-g">
+        <div class="pure-u-1-1">
+            <h1 id="title">Historical Bushfire Trends in Australia</h1>
+        </div>
+    </div>
+    <!-- Introduction -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <p id="text">
+            Every year Australia experiences a large amount of Bushfires with varying 
+            intensity, being known as a dry and arid land these can have devastating effects.
+            This visualisation will explore how through recent years the frequency,
+            </p>
+        </div>
+        <div class="pure-u-1-2">
+            <p id="text">
+                location and 
+            temperature of these bush fires have evolved, it will also explore potential explanatory
+            conditions that may influence these bushfires such as the changing temperature, 
+            possible due to climate change.
+            </p>
+        </div>
+    </div>
+    <!--pure grid group: Map of Fire -->
+    <div class="pure-g">
+        <div class="pure-u-3-4">
+            <div id="firemap"></div>
+        </div>
+        <div class="pure-u-1-4">
+            <h3 id="title">Spread of Fire</h3>
+            <p id="text">
+                From the map, it can be observed that majority of the fires occur 
+                within a few hundred kilometres of the coast, this is expected as this is 
+                where majority of the flora is located, being susceptible to the harsh
+                environmental conditions. Looking closer, a large majority of the data points
+                lie along the top of the country potentially due to the hotter
+                conditions being located to the equator. It is worth noting that the middle
+                portion of Australia is mostly desert conditions, so despite the 
+                warmer conditions is unable to sustain bushfires, thus the lack in the middle of the country.
+            </p>
+        </div>
+    </div>
+    <br>
+    <!-- pure grid group: Temperature Map-->
+    <div class="pure-g">
+        <div class="pure-u-3-4">
+            <div id="tempmap"></div>
+        </div>
+        <div class="pure-u-1-4">
+            <h3 id="title">Annual Temperature Evolution</h3>
+            <p id="text">
+                Inspecting the map it reveals that along the south-east and southern borders
+                the average maximum temperature is significantly lower than at points closer 
+                to the equator. This information supports the bushfire distribution map where 
+                a larger frequency is recorded along the top of Australia. Moving through time
+                on this map, the weather stations record an increase in the average annual temperature
+                suggesting a nation wide increase, which may be a cause in an increase of bushfires.
+            </p>
+        </div>
+    </div>
+    <br><br>
+    <!-- pure grid group: Line and bar chart-->
+    <div class="pure-g">
+        <div class = "pure-u-2-3">
+            <div id="linebar" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <div class="pure-u-2-1">
+                <h3 id="title">Increase in Fires</h3>
+                <p id="text">
+                    From the graph it suggests that there is a trend of increasing
+                    bushfires in Australia on a yearly basis, this could be due to 
+                    warmer conditions, drier conditions or more people setting fires. An
+                    important consideration to be made is that recording mechanisms may have 
+                    improved over time leading to more results being captured than have been
+                    in the past.
+            </div>
+            <div class="pure-u-2-1">
+                <h3 id="title">Distribution by State</h3>
+                <p id="text">
+                    As expected more northern states such as NSW and WA recorded the highest
+                    amount of bushfires in the whole time period, with southern states as TAS and SA 
+                    demonstrating a low count. Interestingly VIC had the third highest recorded count of 
+                    fires over the whole period. 
+                </p><br>
+                <p id="text">Note: The Northern Territory was not included in the dataset</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- pure grid group: Pie chart -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            <div id="pie1" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <div id="pie2" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <h3 id="title">Change in Ingnition Cause</h3>
+            <p id="text">
+                Comparing the two charts, there has been a noticeable increase in 
+                the amount of fires that have been caused by accidental or incendiary means,
+                with a slight uptick in those generated by natural means. This suggests that 
+                the cause for this increase of bushfires demonstrated by the line chart may not 
+                be all environmentally sourced but due to nefarious or neglectful acts.
+            </p>
+        </div>
+    </div>
+
+</div>
+</html>

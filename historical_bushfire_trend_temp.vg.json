@@ -1,0 +1,113 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/Historical_Bushfire_Boundaries_Mod.csv"
+    },
+    "autosize": {
+        "type": "fit",
+        "contains": "padding"
+    },
+    "params": [
+        {
+            "name": "Year_Above",
+            "value": 1950,
+            "bind": {
+                "input": "range",
+                "min": 1950,
+                "max": 2023,
+                "step": 1,
+                "name": "Starting Year: "
+            }
+        }
+    ],
+    "vconcat": [
+    {
+    "layer": [{
+    "width": 550,
+    "title": {"text":"Total Bushfires in Australia each Year (1950-2023)",
+                "fontSize":18},
+    "mark": { "type": "line"},
+    "transform": [
+        {"filter": {"field": "fire_type", "equal": "Bushfire"}},
+        {"filter": "datum.year >= Year_Above"}        
+],
+    "encoding": {
+        "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "axis": {"format": ".0f", "formatType": "number"},
+            "scale": {
+                "domain": {
+                    "param": "Year_Above"
+                }
+            }
+        },
+        "y": {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Yearly Frequency"
+        },
+        "color": {
+            "field": "fire_type",
+            "type": "nominal",
+            "legend": {
+                "title": "Type of Fire"
+            }
+        },
+        "tooltip": [
+            {"field": "year", "type": "quantitative", "title": "Year"},
+            {"aggregate": "count", "type": "quantitative", "title": "Fire Count", "format": ","}
+        ]
+    }
+    },
+    {
+        "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "dx": -5,
+            "dy": -3
+        },
+        "transform": [
+            {"filter": "datum.year == '2019'"},
+            {"filter": {"field": "fire_type", "equal": "Bushfire"}}
+        ],
+        "encoding": {
+            "x": {"field": "year", "type": "quantitative"},
+            "y": {"aggregate": "count", "type": "quantitative"},
+            "text": {"value":"Peak Yearly Fire Count of 3,350"}
+            
+        }
+        
+    }
+]},
+{
+    "title": {"text":"Total Bushfires by Region (1950-2023)",
+            "fontSize":18},
+    "width": 500,
+    "mark": "bar",
+    "transform": [
+        {"filter": "datum.year >= Year_Above"}
+    ],
+    "encoding": {
+        "x": {
+            "field": "state", 
+            "type": "nominal",
+            "title": "State/Territory",
+            "axis": {
+                "labelAngle": 45
+            }
+        },
+        "y": {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Fire Count"
+        },
+        "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State/Territory"},
+            {"aggregate": "count", "type": "quantitative", "title": "Total Fires", "format": ","}]
+            
+    }
+}]
+}

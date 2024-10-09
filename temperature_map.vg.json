@@ -1,0 +1,59 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Average Annual Max Temperature Around Australia",
+        "fontSize": 18
+    },
+    "width": 700,
+    "height": 450,
+    "params": [
+        {
+            "name": "Year_selection",
+            "value": 2019,
+            "bind": {
+                "input": "range",
+                "min": 1975,
+                "max": 2019,
+                "step": 1,
+                "name": "Year: "
+            }
+        }
+    ],
+        "layer": [
+            {
+                "projection": {"type": "mercator"},
+                "data": {
+                    "url": "STE_2021_AUST_GDA2020.json",
+                "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
+                },
+                "mark": {"type": "geoshape", "fill": "", "stroke": "gray"}
+            },
+            {
+                "data": {
+                    "url": "AustralianAverageMaxTemp.csv"
+                },
+                "transform": [
+                    {"filter": "datum.Year == Year_selection"}
+                ],
+                "mark": {"type": "circle"},
+                "encoding": {
+                    "longitude": {"field": "long", "type": "quantitative"},
+                    "latitude": {"field": "lat", "type": "quantitative"},
+                "color": {
+                    "field": "Temp",
+                    "type": "quantitative",
+                    "title": "Temperature (Kelvin)",
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [10, 15, 20, 25, 30, 35],
+                        "range": ["#5350ff", "#b096f4", "#cab9eb",
+                        "#e9d4ce", "#f3c3b5", "#fc9e87", "#ff5d54"]}},
+                "size": {"value": 250},
+                "opacity": {"value": 1},
+                "tooltip": [
+                    {"field": "Temp", "type": "quantitative", "format": ".2f", "title": "Temperatue (C)"}
+                ]
+                }
+            }
+        ]
+}

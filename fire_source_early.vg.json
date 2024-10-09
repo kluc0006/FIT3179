@@ -1,0 +1,26 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "Historical_Bushfire_Boundaries.csv"
+    },
+        "title": {"text":"Ignition Sources of Bushfires Pre 2000s",
+        "fontSize": 18},
+        "mark": "arc",
+        "transform": [
+            {"filter": {"field": "fire_type", "equal": "Bushfire"}},
+            {"filter": "datum.ignition_cause != ''"},
+            {"filter": "datum.year < 2000"}
+        ],
+        "encoding": {
+            "theta": {"aggregate": "count", "type": "quantitative"},
+            "color": {
+                "field": "ignition_cause", 
+                "type": "nominal",
+                "legend": null
+            },
+            "tooltip": [
+                {"field": "ignition_cause", "type": "nominal", "title": "Ignition Cause"},
+                {"aggregate": "count", "type": "quantitative", "title": "Frequency"}
+            ]
+        }
+}

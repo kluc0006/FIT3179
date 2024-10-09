@@ -1,0 +1,20 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "Historical_Bushfire_Boundaries.csv"
+    },
+    "layer": [
+        {
+            "title": "Ignition Sources of Bushfires",
+            "mark": "arc",
+            "transform": [
+                {"filter": {"field": "fire_type", "equal": "Bushfire"}},
+                {"filter": "datum.ignition_cause != ''"}
+            ],
+            "encoding": {
+                "theta": {"aggregate": "count", "type": "quantitative"},
+                "color": {"field": "ignition_cause", "type": "nominal"}
+            }
+        }
+    ]
+}
