@@ -4,7 +4,7 @@
         "text": "Average Annual Max Temperature Around Australia",
         "fontSize": 18
     },
-    "width": 700,
+    "width": 600,
     "height": 450,
     "params": [
         {
