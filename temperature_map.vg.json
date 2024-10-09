@@ -23,14 +23,14 @@
             {
                 "projection": {"type": "mercator"},
                 "data": {
-                    "url": "STE_2021_AUST_GDA2020.json",
+                    "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/STE_2021_AUST_GDA2020.json",
                 "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
                 },
                 "mark": {"type": "geoshape", "fill": "", "stroke": "gray"}
             },
             {
                 "data": {
-                    "url": "AustralianAverageMaxTemp.csv"
+                    "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/AustralianAverageMaxTemp.csv"
                 },
                 "transform": [
                     {"filter": "datum.Year == Year_selection"}

@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "fire_archive_M6_101673.csv"},
+    "data": {"url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/fire_archive_M6_101673.csv"},
     "width": 700,
     "height": 450,
     "title": {"text": "Location of Bushfires in Australia (2019)",
@@ -35,14 +35,14 @@
     "layer": [
         {
             "data": {
-                "url": "STE_2021_AUST_GDA2020.json",
+                "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/STE_2021_AUST_GDA2020.json",
                 "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
             },
             "mark": {"type": "geoshape", "fill": "", "stroke": "gray"}
         },
         {
             "data": {
-                "url": "fire_archive_M6_101673.csv"
+                "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/fire_archive_M6_101673.csv"
             },
             "projection": {"type": "mercator",
                             "center": {"expr": "center_to"}

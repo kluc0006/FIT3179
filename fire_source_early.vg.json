@@ -1,10 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-        "url": "Historical_Bushfire_Boundaries.csv"
+        "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/Historical_Bushfire_Boundaries.csv"
     },
         "title": {"text":"Ignition Sources of Bushfires Pre 2000s",
-        "fontSize": 18},
+        "fontSize": 14},
         "mark": "arc",
         "transform": [
             {"filter": {"field": "fire_type", "equal": "Bushfire"}},
