@@ -22,12 +22,16 @@
     integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Font Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
     <title>Data Visualisation 2</title>
 </head>
 <div class="page">
     <!-- pure grid group: Title -->
     <div class = "pure-g">
-        <div class="pure-u-1-1">
+        <div class="pure-u-1-1" id="section">
             <h1 id="title">Historical Bushfire Trends in Australia</h1>
         </div>
     </div>
@@ -35,7 +39,7 @@
     <div class="pure-g">
         <div class="pure-u-1-2">
             <p id="text">
-            Every year Australia experiences a large amount of Bushfires with varying 
+            Every year <b>Australia</b> experiences a large amount of Bushfires with varying 
             intensity, being known as a dry and arid land these can have devastating effects.
             This visualisation will explore how through recent years the frequency,
             </p>
@@ -51,89 +55,128 @@
     </div>
     <!--pure grid group: Map of Fire -->
     <div class="pure-g">
-        <div class="pure-u-3-4">
-            <div id="firemap"></div>
-        </div>
-        <div class="pure-u-1-4">
-            <h3 id="title">Spread of Fire</h3>
-            <p id="text">
-                From the map, it can be observed that majority of the fires occur 
-                within a few hundred kilometres of the coast, this is expected as this is 
-                where majority of the flora is located, being susceptible to the harsh
-                environmental conditions. Looking closer, a large majority of the data points
-                lie along the top of the country potentially due to the hotter
-                conditions being located to the equator. It is worth noting that the middle
-                portion of Australia is mostly desert conditions, so despite the 
-                warmer conditions is unable to sustain bushfires, thus the lack in the middle of the country.
-            </p>
-        </div>
-    </div>
-    <br>
-    <!-- pure grid group: Temperature Map-->
-    <div class="pure-g">
-        <div class="pure-u-3-4">
-            <div id="tempmap"></div>
-        </div>
-        <div class="pure-u-1-4">
-            <h3 id="title">Annual Temperature Evolution</h3>
-            <p id="text">
-                Inspecting the map it reveals that along the south-east and southern borders
-                the average maximum temperature is significantly lower than at points closer 
-                to the equator. This information supports the bushfire distribution map where 
-                a larger frequency is recorded along the top of Australia. Moving through time
-                on this map, the weather stations record an increase in the average annual temperature
-                suggesting a nation wide increase, which may be a cause in an increase of bushfires.
-            </p>
-        </div>
-    </div>
-    <br><br>
-    <!-- pure grid group: Line and bar chart-->
-    <div class="pure-g">
-        <div class = "pure-u-2-3">
-            <div id="linebar" class="vis-container"></div>
+        <div class="pure-u-2-3">
+            <div id="firemap" class="vis-container"></div>
         </div>
         <div class="pure-u-1-3">
-            <div class="pure-u-2-1">
-                <h3 id="title">Increase in Fires</h3>
-                <p id="text">
-                    From the graph it suggests that there is a trend of increasing
-                    bushfires in Australia on a yearly basis, this could be due to 
-                    warmer conditions, drier conditions or more people setting fires. An
-                    important consideration to be made is that recording mechanisms may have 
-                    improved over time leading to more results being captured than have been
-                    in the past.
-            </div>
-            <div class="pure-u-2-1">
-                <h3 id="title">Distribution by State</h3>
-                <p id="text">
-                    As expected more northern states such as NSW and WA recorded the highest
-                    amount of bushfires in the whole time period, with southern states as TAS and SA 
-                    demonstrating a low count. Interestingly VIC had the third highest recorded count of 
-                    fires over the whole period. 
-                </p><br>
-                <p id="text">Note: The Northern Territory was not included in the dataset</p>
-            </div>
+            <h3 id="title">Spread of Fire</h3>
+            <p id="text">
+                <ul>
+                    <li>
+                        Majority of fires occur close to the coastline where <b>flora is denser</b> and more 
+                        susceptible to the drier conditions to spark a fire.
+                    </li>
+                    <li>
+                        Fires are more dense along the <b>north</b> of the country, where its closer to
+                        the equator and experiences warmer conditions.
+                    </li>
+                    <li>
+                        The stronger <b>desert conditions</b> in the centre lack the vegetation to support
+                        bush fires, along with low population in these areas may not support as 
+                        in depth recording techniques.
+                    </li>
+                    <li><b>Most intense</b> fires by temperature occurred in the lower parts of Australia</li>
+                </ul>
+            </p>
         </div>
     </div>
-    <br>
+    <!-- pure grid group: Temperature Map-->
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+            <div id="tempmap" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <h3 id="title">Annual Temperature Evolution</h3>
+            <p id="text">
+                <ul>
+                    <li>
+                        South-east and <b>southern regions</b> historically record among the <b>lowest</b> temperatures,
+                        due to geographic location from the equator.
+                    <li>
+                        As the year progresses to the current day, the average maximum temperature is 
+                        <b>increasing</b> nation wide, may induce more bushfires.
+                    </li>
+                    <li>
+                        The distribution and frequency of the bush fires aligns with the temperature map,
+                        with a higher frequency of bush fires in regions of severe heat.
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <!-- pure grid group: Line and bar chart-->
+    <div class="pure-g">
+        <div class = "pure-u-1-2">
+            <div id="linebar" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-6"></div>
+        <div class="pure-u-1-3" id="vertbox">
+            <h3 id="title">Increase in Fires</h3>
+                <p id="text">
+                    <ul>
+                        <li>
+                            Yearly fire frequency trend is <b>increasing</b>.
+                        </li>
+                        <li>
+                            This increase could be due to <b>warmer</b> conditions as suggested by temperature map.
+                        </li>
+                        <li>
+                            Increase may come from more sophisticated recording techniques being developed and used, so old data may be unreliable.
+                        </li>
+                    </ul>
+            <h3 id="title">Distribution by State</h3>
+                <p id="text">
+                    <ul>
+                        <li>
+                            <b>Northern</b> and <b>Central</b> areas such as NSW and WA recorded a high frequency of fires.
+                        </li>
+                        <li>
+                            <b>Southern</b> states such as TAS and SA demonstrated a low recorded amount of fires.
+                        </li>
+                        <li>
+                            Despites its southern location <b>VIC</b> had the third highest frequency over the whole time period.
+                        </li>
+                    </ul>
+                </p><br>
+                <p id="text"><b>Note</b>: The Northern Territory was not included in the dataset</p>
+        </div>
+    </div>
 
     <!-- pure grid group: Pie chart -->
     <div class="pure-g">
-        <div class="pure-u-2-5">
+        <div class="pure-u-2-3">
             <div id="pie1" class="vis-container"></div>
         </div>
-        <div class="pure-u-2-5">
-            <div id="pie2" class="vis-container"></div>
-        </div>
-        <div class="pure-u-1-5">
+        <div class="pure-u-1-3">
             <h3 id="title">Change in Ingnition Cause</h3>
             <p id="text">
-                Comparing the two charts, there has been a noticeable increase in 
-                the amount of fires that have been caused by accidental means,
-                with a slight uptick in those generated by natural means. This suggests that 
-                the cause for this increase of bushfires demonstrated by the line chart may not 
-                be all environmentally sourced but due to neglectful acts.
+                <ul class="butterfly">
+                    <li>
+                        Increase in the proportion of ignitions by <b>accidental</b> means.
+                    </li>
+                    <li>
+                        Decrease in proportion of ignition by <b>incendiary</b>.
+                    </li>
+                    <li>
+                        Increase in proportion by natural means, source may due to
+                        harsher weather conditions, an outcome of <b>climate change</b>.
+                    </li>
+                </ul>
             </p>
+        </div>
+    </div>
+
+    <!-- Metadata -->
+    <div class="pure-g">
+        <div class="pure-u-1-1" id="metadata">
+            <p id="text" >
+                <b>Author</b>: Kade Lucy
+            </p>
+            <p id="text"><b>Last Modified</b>: 15/10/2024</p>
+            <p id="text"><b>Data Sources</b></p>
+            <p><a href="https://www.kaggle.com/datasets/joshmills/australian-average-daily-maximum-tempreature">Australian Average Daily Maximum Temperature, Josh Mills - Kaggle</a></p>
+            <p><a href="https://www.kaggle.com/datasets/carlosparadis/fires-from-space-australia-and-new-zeland">Fires from Space: Australia, Carlos Paradis - Kaggle</a></p>
+            <p><a href="">National Bushfire Boundaries - Digital Atlas of Australia</a></p>
         </div>
     </div>
 

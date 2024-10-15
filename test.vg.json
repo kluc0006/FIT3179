@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/fire_archive_M6_101673.csv"},
+  "config": {
+    "font": "Roboto",
+    "background": "#f4f4f4",
+    "view": {"stroke": "transparent"}
+  },
+  "params": [
+    {
+      "name": "min_temperature",
+      "value": 300,
+      "bind": {
+        "input": "range",
+        "min": 300,
+        "max": 510,
+        "step": 1,
+        "name": "Minimum Temperature (K): "
+      }
+    },
+    {
+      "name": "region_selection",
+      "value": "Australia",
+      "bind": {
+        "input": "select",
+        "options": ["Australia", "New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania", "Northern Territory"],
+        "name": "Select Region: "
+      }
+    }
+  ],
+  "title": {
+    "text": "Location of Bushfires in Australia (2019)",
+    "fontSize": 18
+  },
+  "projection": {
+    "type": "mercator",
+    "scale": 1000
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "ne_50m_admin_1_states_provinces.json",
+        "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
+      },
+      "mark": {"type": "geoshape", "fill": "", "stroke": "gray"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/fire_archive_M6_101673.csv"
+      },
+      "mark": {"type": "circle"},
+      "transform": [
+        {
+          "filter": "region_selection == 'Australia' ? true : datum.state == region_selection"
+        },
+        {"filter": "datum.brightness >= min_temperature"}
+      ],
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "color": {
+          "field": "brightness",
+          "type": "quantitative",
+          "title": "Temperature (Kelvin)",
+          "scale": {
+            "type": "threshold",
+            "domain": [300, 350, 400, 450],
+            "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7d0405"]
+          }
+        },
+        "tooltip": [
+          {"field": "acq_date", "type": "nominal", "title": "Date"},
+          {"field": "brightness", "type": "quantitative", "title": "Temperature (K)"}
+        ]
+      }
+    }
+  ]
+}

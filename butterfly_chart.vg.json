@@ -1,0 +1,346 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/Historical_Bushfire_Boundaries.csv"
+    },
+    "config": {
+        "font": "Roboto",
+      "background": "#f4f4f4",
+      "view": {"stroke": "transparent"}
+    },
+    "title": {
+        "text":"Distribution of Bushfire Sources Before and After 2000",
+        "fontSize": 18
+    },
+    "width": "container",
+    "height": "container",
+    "transform": [
+      {"filter": {"field": "fire_type", "equal": "Bushfire"}},
+      {"filter": "datum.ignition_cause != ''"},
+      {
+        "calculate": "datum.year >= 2000 ? 'After 2000' : 'Before 2000'",
+        "as": "Year Category"
+      },
+      {
+        "aggregate": [{"op": "count", "as": "Count"}],
+        "groupby": ["ignition_cause", "Year Category"]
+      },
+      {
+        "calculate": "datum['Year Category'] === 'Before 2000' ? -datum.Count : datum.Count",
+        "as": "Diverging Count"
+      },
+      {
+        "calculate": "abs(datum['Diverging Count'])",
+        "as": "Frequency"
+      }
+    ],
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "title": "Count",
+            "axis": {
+              "title": "Frequency", 
+              "grid": true,
+              "labelExpr": "abs(datum.value)"
+            }
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal",
+            "title": "Ignition Source"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            },
+            "title": "Year Category"
+          },
+          "tooltip": [
+            {"field": "Year Category", "type": "nominal"},
+            {"field": "ignition_cause", "type": "nominal", "title": "Ignition Source"},
+            {"field": "Frequency", "type": "quantitative", "title": "Frequency"}
+          ]
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Accidental'"},
+          {"filter": "datum['Year Category'] === 'Before 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "15.6%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Incendiary'"},
+          {"filter": "datum['Year Category'] === 'Before 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "50.9%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Natural'"},
+          {"filter": "datum['Year Category'] === 'Before 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "13.3%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Undetermined'"},
+          {"filter": "datum['Year Category'] === 'Before 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "20.2%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Accidental'"},
+          {"filter": "datum['Year Category'] === 'After 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "25.0%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Incendiary'"},
+          {"filter": "datum['Year Category'] === 'After 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "36.7%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Natural'"},
+          {"filter": "datum['Year Category'] === 'After 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "21.6%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.ignition_cause === 'Undetermined'"},
+          {"filter": "datum['Year Category'] === 'After 2000'"}
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 3
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "sum",
+            "field": "Diverging Count",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ignition_cause",
+            "type": "nominal"
+          },
+          "text": {
+            "value": "16.4%"
+          },
+          "color": {
+            "field": "Year Category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Before 2000", "After 2000"],
+              "range": ["#d95f02", "#1b9e77"]
+            }
+          }
+        }
+      }
+    ]
+  }
+  

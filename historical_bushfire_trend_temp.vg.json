@@ -3,9 +3,10 @@
     "data": {
         "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/Historical_Bushfire_Boundaries_Mod.csv"
     },
-    "autosize": {
-        "type": "fit",
-        "contains": "padding"
+    "config": {
+        "font": "Roboto",
+        "background": "#f4f4f4",
+        "view": {"stroke": "transparent"}
     },
     "params": [
         {
@@ -14,7 +15,7 @@
             "bind": {
                 "input": "range",
                 "min": 1950,
-                "max": 2023,
+                "max": 2010,
                 "step": 1,
                 "name": "Starting Year: "
             }
@@ -22,11 +23,15 @@
     ],
     "vconcat": [
     {
-    "layer": [{
-    "width": 550,
+        "width": "container",
+        "height": 300,
+    "layer": [
+        {
     "title": {"text":"Total Bushfires in Australia each Year (1950-2023)",
                 "fontSize":18},
-    "mark": { "type": "line"},
+    "mark": { "type": "line",
+            "color": "#f47201"
+    },
     "transform": [
         {"filter": {"field": "fire_type", "equal": "Bushfire"}},
         {"filter": "datum.year >= Year_Above"}        
@@ -47,13 +52,6 @@
             "aggregate": "count",
             "type": "quantitative",
             "title": "Yearly Frequency"
-        },
-        "color": {
-            "field": "fire_type",
-            "type": "nominal",
-            "legend": {
-                "title": "Type of Fire"
-            }
         },
         "tooltip": [
             {"field": "year", "type": "quantitative", "title": "Year"},
@@ -85,8 +83,9 @@
 {
     "title": {"text":"Total Bushfires by Region (1950-2023)",
             "fontSize":18},
-    "width": 500,
     "mark": "bar",
+    "height": 300,
+    "width": "container",
     "transform": [
         {"filter": "datum.year >= Year_Above"}
     ],
@@ -104,10 +103,15 @@
             "type": "quantitative",
             "title": "Fire Count"
         },
+        "color": {"value": "#f47201"},
         "tooltip": [
             {"field": "state", "type": "nominal", "title": "State/Territory"},
             {"aggregate": "count", "type": "quantitative", "title": "Total Fires", "format": ","}]
             
     }
-}]
+}],
+"autosize": {
+    "type": "fit",
+    "contains": "padding"
+}
 }

@@ -1,42 +1,37 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {"url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/fire_archive_M6_101673.csv"},
-    "width": 600,
-    "height": 450,
-    "title": {"text": "Location of Bushfires in Australia (2019)",
-            "fontSize": 18
-},
+    "config": {
+        "font": "Roboto",
+        "background": "#f4f4f4",
+        "view": {"stroke": "transparent"}
+    },
+    "width": "container",
+    "height": "container",
     "params": [
         {
-            "name": "center_to",
-            "value": [133, 23.45],
+            "name": "min_temperature",
+            "value": 300,
             "bind": {
-                "input": "select",
-                "options": [
-                    [133, 23.45],
-                    [144.96, 37.81],
-                    [151.21,33.87],
-                    [153.03, 27.47],
-                    [147.33, 42.89],
-                    [138.35, 34.55],
-                    [115.86, 31.95],
-                    [130.84, -12.46],
-                    [149.13, 35.28]],
-                    "labels": ["Australia", "Victoria", "New South Wales", "Brisbane", 
-                    "Tasmania", "South Australia", "Western Austrlia", "Northern Terrioty",
-                    "A.C.T"],
-                "name": "Map Centre: "
+                "input": "range",
+                "min": 300,
+                "max": 510,
+                "step": 1,
+                "name": "Minimum Temperature (K): "
             }
         }
     ],
+    "title": {"text": "Location of Bushfires in Australia (2019)",
+            "fontSize": 18
+},
     "projection": {
-        "type": "mercator",
-        "center": {"expr": "center_to"}}, 
+        "type": "mercator"
+    },
     "layer": [
         {
             "data": {
-                "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/STE_2021_AUST_GDA2020.json",
-                "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
+                "url": "ne_50m_admin_1_states_provinces.json",
+                "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
             },
             "mark": {"type": "geoshape", "fill": "", "stroke": "gray"}
         },
@@ -44,11 +39,10 @@
             "data": {
                 "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/fire_archive_M6_101673.csv"
             },
-            "projection": {"type": "mercator",
-                            "center": {"expr": "center_to"}
-        },
             "mark": {"type": "circle"},
-            
+            "transform": [
+                {"filter": "datum.brightness >= min_temperature"}
+            ],
             "encoding": {
                 "longitude": {"field": "longitude", "type": "quantitative"},
                 "latitude": {"field": "latitude", "type": "quantitative"},
@@ -58,7 +52,7 @@
                     "title": "Temperature (Kelvin)",
                     "scale": {
                         "type": "threshold",
-                        "domain": [300, 340, 380, 420],
+                        "domain": [300, 350, 400, 450],
                         "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7d0405"]
                     }
                 },

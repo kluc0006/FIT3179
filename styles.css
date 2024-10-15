@@ -18,3 +18,72 @@
     display: flex;
     justify-content: center;
 }
+
+.vis-container {
+    width: 100%;
+    height: 100%;
+}
+
+.pure-g {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 40px 0;
+    transition: box-shadow 0.3s ease-in-out;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+body {
+    background-color: #fdbe85;
+}
+
+.roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+
+p {
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+h1 {
+    font-family: 'Roboto';
+}
+h3 {
+    font-family: 'Roboto';
+}
+
+ul {
+    font-family: 'Roboto';
+    font-weight: 430;
+    padding-left: 3%;
+    padding-right: 3%;
+    line-height: 1.5;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+#metadata {
+    text-align: center;
+}
+
+#vertbox {
+    align-items: center;
+}

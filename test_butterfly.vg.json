@@ -1,0 +1,70 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/kluc0006/FIT3179/refs/heads/main/Historical_Bushfire_Boundaries.csv"
+    },
+    "config": {
+        "background": "#f4f4f4",
+        "view": {"stroke": "transparent"}
+    },
+    "transform": [
+    {"filter": {"field": "fire_type", "equal": "Bushfire"}},
+    {"filter": "datum.ignition_cause != ''"},
+      {
+        "calculate": "datum.year >= 2000 ? 'After 2000' : 'Before 2000'",
+        "as": "Year Category"
+      },
+      {
+        "aggregate": [{"op": "count", "as": "Count"}],
+        "groupby": ["ignition_cause", "Year Category"]
+      },
+      {
+        "window": [
+            {"op": "sum", "field": "Count", "as": "TotalCount"}
+        ],
+        "groupby": ["Year Category"]
+      },
+      {
+        "calculate": "datum.Count / datum.TotalCount",
+        "as": "Proportion"
+      },
+      {
+        "calculate": "datum['Year Category'] === 'Before 2000' ? -datum.Count : datum.Count",
+        "as": "Diverging Count"
+      },
+      {
+        "calculate": "abs(datum['Diverging Count'])",
+        "as": "Frequency"
+      },
+      {
+        "calculate": "datum['Year Category'] === 'Before 2000' ? -datum.Proportion : datum.Proportion",
+        "as": "Diverging Proportion"
+      }
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "Diverging Proportion",
+        "type": "quantitative"
+      },
+      "y": {
+        "field": "ignition_cause",
+        "type": "nominal",
+        "title": "Ignition Source"
+      },
+      "color": {
+        "field": "Year Category",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Before 2000", "After 2000"],
+          "range": ["#d95f02", "#1b9e77"]
+        },
+        "title": "Year Category"
+      },
+      "tooltip": [
+        {"field": "Year Category", "type": "nominal"},
+        {"field": "ignition_cause", "type": "nominal", "title": "Ignition Source"},
+        {"field": "Frequency"}
+      ]
+    }
+  }
